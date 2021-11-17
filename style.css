@@ -1,0 +1,55 @@
+.video-miniatures__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 5%;
+}
+
+.video-miniatures__heading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 4vw;
+}
+
+.video-miniature__wrapper {
+    position: relative;
+    width: 33%;
+    margin-bottom: 0.5%;
+}
+
+.video-miniature {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-miniature__footer {
+    position: absolute;
+    bottom: 5%;
+    padding-left: 5%;
+    display: flex;
+}
+
+.video-miniature__footer_svg-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-miniature__footer_svg {
+    fill: white;
+}
+
+.video-miniature__watch-count {
+    color: white;
+    font-family: proxima-semibold, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
+    font-weight: 600;
+    font-size: 16px;
+    padding-left: 5%;
+}
