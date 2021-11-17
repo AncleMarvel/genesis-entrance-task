@@ -1,7 +1,9 @@
 const app = Vue.createApp({
     data() {
         return {
-            feed: null
+            feed: null,
+            pageNumber: 1,
+            size: 6
         }
     },
     methods: {
@@ -17,32 +19,59 @@ const app = Vue.createApp({
                 }
             };
 
-            $.ajax(settings).done(function (response) {
+            $.ajax(settings).done(response => {
                 this.feed = response;
-                localStorage.trandingFeet = JSON.stringify(response);
+                console.log(response);
+            }).fail((res) => {
+                console.error(res);
             });
         },
 
         initTrandingFeet() {
-            if (localStorage.trandingFeet) {
-                this.feed = JSON.parse(localStorage.trandingFeet);
-                console.log(this.feed);
-            } else {
-                this.getTrandingFeet();
-            }
-        }
-    },
-    watch: {
-        feed() {
+            this.getTrandingFeet();
+        },
+
+        nextPage() {
+            this.pageNumber++;
+        },
+
+        prevPage() {
+            this.pageNumber--;
         }
     },
     mounted() {
         this.initTrandingFeet();
     },
+
+    computed: {
+        pageCount() {
+            if (!this.feed) {
+                return;
+            }
+            let l = this.feed.length,
+                s = this.size;
+            return Math.ceil(l / s);
+        },
+
+        paginatedData() {
+            if (!this.feed) {
+                return;
+            }
+            const start = this.pageNumber * this.size,
+                end = start + this.size;
+                console.dir(this.feed);
+            return this.feed.slice(start, end);
+        }
+    },
     template:
     `<div class="video-posts__container">
-        <h2 class="video-posts__heading">Tranding Feet</h2>
-        <video-post v-for="video in feed" :data="video"></video-post>
+        <h2 class="video-posts__heading">
+            Tranding Feet
+            <div v-if="feed">{{ pageNumber }} / {{ feed.length / size }}</div>
+            <button class="video-posts__page-btn" @click="prevPage">prev</button>
+            <button class="video-posts__page-btn" @click="nextPage">next</button>
+        </h2>
+        <video-post v-for="video in paginatedData" :data="video"></video-post>
     </div>`
 });
 
@@ -82,8 +111,9 @@ app.component('video-post', {
             this.isPaused = !this.isPaused;
         }
     },
+
     template:
-    `<div class="video-miniature__wrapper" @click="openVideo">
+        `<div class="video-miniature__wrapper" @click="openVideo">
     
         <video class="video-miniature" :src="data.videoUrl" v-on:mouseenter="$event.target.play()" v-on:mouseleave="$event.target.pause()" muted></video>
         <div v-if="!isOpened" class="video-miniature__footer">

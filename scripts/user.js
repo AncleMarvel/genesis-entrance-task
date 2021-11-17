@@ -9,12 +9,12 @@ const app = Vue.createApp({
     },
     methods: {
         getName() {
-            let vars = location.search.substr(1).split('&').reduce(function(res, a) {
+            let vars = location.search.substr(1).split('&').reduce(function (res, a) {
                 let t = a.split('=');
                 res[decodeURIComponent(t[0])] = t.length == 1 ? null : decodeURIComponent(t[1]);
                 return res;
             }, {});
-            return vars["name"] ? vars["name"] : ''; 
+            return vars["name"] ? vars["name"] : '';
         },
 
         getUserInfo() {
@@ -28,25 +28,22 @@ const app = Vue.createApp({
                     "x-rapidapi-key": "220231438amsh6c89b0f07f31979p13d268jsn735564eb533e"
                 }
             };
-            
-            $.ajax(settings).done(function (response) {
+
+            $.ajax(settings).done((response) => {
+                console.log(response);
                 this.user = response.user;
                 this.stats = response.stats;
-                localStorage.userInfo = JSON.stringify(response.user);
-                localStorage.stats = JSON.stringify(response.stats);
+                this.initDescription();
+            }).fail((res) => {
+                console.error(res);
             });
         },
 
         initUserInfo() {
-            if (localStorage.userInfo && localStorage.stats) {
-                this.user = JSON.parse(localStorage.userInfo);
-                this.stats = JSON.parse(localStorage.stats);
-            } else {
-                this.getUserInfo();
-            }
+            this.getUserInfo();
         },
 
-        initDescription() {;
+        initDescription() {
             this.user.signature = this.user.signature.split("\n");
         },
         getFeed() {
@@ -60,21 +57,15 @@ const app = Vue.createApp({
                     "x-rapidapi-key": "220231438amsh6c89b0f07f31979p13d268jsn735564eb533e"
                 }
             };
-            
+
             $.ajax(settings).done(function (response) {
                 this.feed = response;
-                localStorage.feed = JSON.stringify(response);
                 console.log(response);
             });
         },
 
         initFeed() {
-            if (localStorage.feed) {
-                this.feed = JSON.parse(localStorage.feed);
-                console.log(this.feed);
-            } else {
-                this.getFeed();
-            }
+            this.getFeed();
         }
     },
     watch: {
@@ -82,7 +73,6 @@ const app = Vue.createApp({
     mounted() {
         this.name = this.getName();
         this.initUserInfo();
-        this.initDescription();
         this.initFeed();
     }
 });
@@ -124,7 +114,7 @@ app.component('video-post', {
         }
     },
     template:
-    `<div class="video-miniature__wrapper" @click="openVideo">
+        `<div class="video-miniature__wrapper" @click="openVideo">
     
         <video class="video-miniature" :src="data.videoUrl" v-on:mouseenter="$event.target.play()" v-on:mouseleave="$event.target.pause()" muted></video>
         <div v-if="!isOpened" class="video-miniature__footer">
