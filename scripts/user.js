@@ -50,7 +50,7 @@ const app = Vue.createApp({
             const settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": `https://tiktok33.p.rapidapi.com/user/feed/${this.name}`,
+                "url": "https://tiktok33.p.rapidapi.com/trending/feed",
                 "method": "GET",
                 "headers": {
                     "x-rapidapi-host": "tiktok33.p.rapidapi.com",
@@ -58,10 +58,27 @@ const app = Vue.createApp({
                 }
             };
 
-            $.ajax(settings).done(function (response) {
+            $.ajax(settings).done(response => {
                 this.feed = response;
                 console.log(response);
+            }).fail((res) => {
+                console.error(res);
             });
+            // const settings = {
+            //     "async": true,
+            //     "crossDomain": true,
+            //     "url": `https://tiktok33.p.rapidapi.com/user/feed/${this.name}`,
+            //     "method": "GET",
+            //     "headers": {
+            //         "x-rapidapi-host": "tiktok33.p.rapidapi.com",
+            //         "x-rapidapi-key": "220231438amsh6c89b0f07f31979p13d268jsn735564eb533e"
+            //     }
+            // };
+
+            // $.ajax(settings).done(function (response) {
+            //     this.feed = response;
+            //     console.log(response);
+            // });
         },
 
         initFeed() {

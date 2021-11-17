@@ -85,3 +85,8 @@
     font-weight: 700;
     line-height: 25px;
 }
+
+.video-posts__container {
+    width: 100%;
+    padding-top: 1%;
+}
