@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/user.css">
+    <title>TAP</title>
+</head>
+
+<body>
+    <main id="app">
+        <div class="user__top-info">
+            <div class="user__avatar_wrapper">
+                <img class="user__avatar" :src="user.avatarMedium" :alt="name">
+            </div>
+            <div class="user__titles_wrapper">
+                <h2 class="user__title" v-if="name">
+                    {{ name }}
+                </h2>
+                <h1 class="user__subtitle">
+                    {{ user.nickname }}
+                </h1>
+            </div>
+        </div>
+        <div class="user__mid-info">
+            <div class="user__number">
+                <strong class="user__number_value" title="Подписки" v-if="stats">
+                    {{ stats.followingCount }}
+                </strong>
+                <span class="unit">
+                    Подписки
+                </span>
+            </div>
+            <div class="user__number">
+                <strong class="user__number_value" title="Подписчики" v-if="stats">
+                    {{ stats.followerCount }}
+                </strong>
+                <span class="unit">
+                    Подписчики
+                </span>
+            </div>
+            <div class="user__number">
+                <strong class="user__number_value" title="Лайки" v-if="stats">
+                    {{ stats.heartCount }}
+                </strong>
+                <span class="unit">
+                    Лайки
+                </span>
+            </div>
+        </div>
+        <div class="user__bottom-info">
+            <div class="user__desc">
+                <span class="user__desc_item" v-for="item in user.signature">
+                    {{ item }}
+                </span>
+            </div>
+        </div>
+
+        <h3 class="video-headig">
+            Клипы
+        </h3>
+
+        <!-- <div class="video-posts__container" id="user-feed">
+            <video-post v-for="video in feed" :data="video"></video-post>
+        </div> -->
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="scripts/user.js"></script>
+</body>
+
+</html>

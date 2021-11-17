@@ -1,0 +1,87 @@
+#app {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.user__top-info {
+    padding-top: 3%;
+    display: flex;
+    margin-bottom: 5%;
+}
+
+.user__titles_wrapper {
+    padding-left: 3%;
+}
+
+.user__title {
+    font-family: sofiapro-bold, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    padding-bottom: 4px;
+}
+
+.user__subtitle {
+    font-family: proxima-semibold, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.user__avatar_wrapper {
+    width: 16%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user__avatar {
+    width: 100%;
+}
+
+.user__mid-info {
+    display: flex;
+    margin-bottom: 5%;
+    color: rgba(18, 18, 18, 0.75);
+}
+
+.user__number {
+    display: flex;
+}
+
+.user__number_value {
+    font-family: sofiapro-semibold, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.unit {
+    display: inline-block;
+    font-family: proxima-regular, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    margin-left: 6%;
+}
+
+.user__number:not(:first-child) {
+    margin-left: 7%;
+}
+
+.user__desc {
+    display: flex;
+    flex-direction: column;
+    color: rgba(18, 18, 18, 0.75);
+}
+
+.video-headig {
+    margin-top: 5%;
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 2%;
+    border-bottom: 2px solid black;
+
+    font-family: sofiapro-semibold, Arial, Tahoma, PingFangSC, sans-serif, "Segoe UI Emoji", "Noto Emoji";
+    font-weight: 700;
+    line-height: 25px;
+}
