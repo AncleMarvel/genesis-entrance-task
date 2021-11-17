@@ -165,6 +165,7 @@
 
 .video-opened__counter {
     font-size: 1vw;
+    color: white;
 }
 
 .video-opened__author_wrapper {
@@ -180,4 +181,34 @@
 .video-opened__description_wrapper {
     font-size: 2vw;
     color: white;
+}
+
+@media (max-width: 500px) {
+    .video-posts__container {
+        width: 100%;
+    }
+
+    .video-opened__close-svg_wrapper {
+        padding-left: 10%;
+        padding-top: 10%;
+    }
+
+    .video-opened__close-svg_wrapper svg {
+        width: 11vw;
+        height: 11vw;
+    }
+
+    .video-opened__surface_right {
+        padding-right: 7%;
+    }
+
+    .video-opened__counter {
+        font-size: 16px;
+
+    }
+
+    .video-opened__description_wrapper {
+        font-size: 16px;
+        padding-left: 8%;   
+    }
 }
